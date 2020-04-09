@@ -23,6 +23,10 @@ RUN apt-get update \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
 
+# Add yarn package sources
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+	&& echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
+
 # update software repos
 RUN apt-get update \
 # upgrade software
@@ -32,6 +36,7 @@ RUN apt-get update \
 	&& apt-get -y install \
 # install essential build tools
 		git \
+		yarn \
 # install tools for cypress
 		libgtk2.0-0 libgtk-3-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb \
 # clean up
