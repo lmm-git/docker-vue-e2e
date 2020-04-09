@@ -19,6 +19,7 @@ RUN apt-get update \
 	&& apt-get -y install apt-transport-https \
 		ca-certificates \
 		curl \
+		gnupg2 \
 # clean up
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
